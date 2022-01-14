@@ -3,6 +3,8 @@ import './App.css';
 import SingleDay from './Components/SingleDay/SingleDay';
 import FiveDays from './Components/FiveDays/FiveDays';
 import SixteenDays from './Components/SixteenDays/SixteenDays';
+import SideNav from './Components/SideNavbar/SideNav';
+import InputComp from './Components/InputComp/InputComp';
 
 function App() {
   const [showToday, setShowToday] = useState(true)  
@@ -28,34 +30,44 @@ function App() {
   }
 
   return (
-    <div>
+    <div id='main'>
 
-      <div className='route-div'>
-        <h1 onClick={handleToday}> Today </h1>
-        <h1 onClick={handleWeek}> Week </h1>
-        <h1 onClick={handleMonth}> Month </h1>
+      <div id='side'>
+        <SideNav/>
+      </div>
+      
+      <div id='input'>
+        <InputComp/>
       </div>
 
-      {
-        showToday && !showFiveDays && !showSixteenDays && 
-        <div>
-          <SingleDay/>
+      <div id='route'>
+        <div className='route-div'>
+          <h1 onClick={handleToday}> Today </h1>
+          <h1 onClick={handleWeek}> Week </h1>
+          <h1 onClick={handleMonth}> Month </h1>
         </div>
-      }
+        
+        {
+          showToday && !showFiveDays && !showSixteenDays && 
+          <div>
+            <SingleDay/>
+          </div>
+        }
 
-      {
-        !showToday && showFiveDays && !showSixteenDays && 
-        <div>
-          <FiveDays/>
-        </div>
-      }
+        {
+          !showToday && showFiveDays && !showSixteenDays && 
+          <div>
+            <FiveDays/>
+          </div>
+        }
 
-      {
-        !showToday && !showFiveDays && showSixteenDays && 
-        <div>
-          <SixteenDays/>
-        </div>
-      }
+        {
+          !showToday && !showFiveDays && showSixteenDays && 
+          <div>
+            <SixteenDays/>
+          </div>
+        }
+      </div>
 
     </div>
   );

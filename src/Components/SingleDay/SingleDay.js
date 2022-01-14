@@ -3,8 +3,8 @@ import './SingleDay.css'
 
 const SingleDay = () => {
     const [singleData, setSingleData] = useState();
-    console.log(singleData);
-    
+    // console.log(singleData);
+
     const fetchSingleData = async() => {
         const data = await fetch("https://api.openweathermap.org/data/2.5/weather?q=London&appid=048c43a2f7e00f37c3b4044df2ec3128");
         const res = await data.json();
@@ -18,7 +18,7 @@ const SingleDay = () => {
 
     return (
         <div>
-             {
+            {
             singleData &&
             <div>
                 <div style={{textAlign:'center'}}>
