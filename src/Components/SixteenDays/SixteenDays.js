@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 
 const SixteenDays = () => {
     const [sixteenDaysData, setsixteenDaysData] = useState();
-    
+    // console.log("16 days",sixteenDaysData);
+
     const fetchSixteenDaysData = async() => {
         const data = await fetch("http://api.openweathermap.org/data/2.5/forecast/daily?q=London&units=metric&cnt=16&appid=048c43a2f7e00f37c3b4044df2ec3128");
         const res = await data.json();
-        console.log(res);
+        setsixteenDaysData(res);
     }
     
     useEffect(() => {
@@ -15,7 +16,38 @@ const SixteenDays = () => {
 
     return (
         <div>
-            
+            {/* country, city name */}
+
+            { sixteenDaysData &&
+
+                <div style={{textAlign:'center'}}>
+                    <h1> City Name: {sixteenDaysData.city.name}</h1>
+                    <h2> Country: {sixteenDaysData.city.country}</h2>
+                    <h2> Population {sixteenDaysData.city.population}</h2>
+                    <div style={{display:'flex', justifyContent:'space-evenly', flexWrap:'wrap'}}>
+                        <h3> Date </h3>
+                        <h3> Clouds </h3>
+                        <h3> Humidity </h3>
+                        <h3> Pressure </h3>
+                        <h3> Speed </h3>
+                        <h3> Description </h3>
+                    </div>
+
+                    {
+                        sixteenDaysData.list.map( (e, i) => (
+                            <div key={i} style={{display:'flex', justifyContent:'space-evenly', flexWrap:'wrap'}}>
+                                <p> {e.dt} </p>
+                                <p> {e.clouds} </p>
+                                <p> {e.humidity} </p>
+                                <p> {e.pressure} </p>
+                                <p> {e.speed} </p>
+                                <p> {e.weather[0].description} </p>
+                            </div>
+                        ))
+                    }
+                </div>
+            }
+
         </div>
     )
 }
