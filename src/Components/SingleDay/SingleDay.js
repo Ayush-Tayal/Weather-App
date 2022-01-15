@@ -1,20 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './SingleDay.css'
 
-const SingleDay = () => {
-    const [singleData, setSingleData] = useState();
-    // console.log(singleData);
+const SingleDay = ({singleData}) => {
 
-    const fetchSingleData = async() => {
-        const data = await fetch("https://api.openweathermap.org/data/2.5/weather?q=London&appid=048c43a2f7e00f37c3b4044df2ec3128");
-        const res = await data.json();
-        setSingleData(res);
-    }
-    
-    useEffect(() => {
-        fetchSingleData();
-    }, [])
-
+    let dateObj = JSON.stringify(new Date(singleData?.dt * 1000))
+    let date = dateObj.slice(1,11)
 
     return (
         <div>
@@ -29,13 +19,12 @@ const SingleDay = () => {
                 <div id='singleDayInfo'>
                     <div>
                         <h3> Date </h3>
-                        <p> {singleData.dt} </p>
+                        <p> {date} </p>
                     </div>
 
                     <div>
                         <h3> Temperature </h3>
-                        <p> {singleData.main.temp} </p>
-
+                        <p> {(singleData.main.temp - 273.15).toFixed(2)} °C </p>
                     </div>
 
                     <div>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 
-const FiveDays = () => {
+const FiveDays = ({input}) => {
     const [fiveDaysData, setFiveDaysData] = useState();
-    // console.log(fiveDaysData);
+    console.log(fiveDaysData);
     
     const fetchFiveDaysData = async() => {
-        const data = await fetch("https://api.openweathermap.org/data/2.5/forecast?q=London&appid=048c43a2f7e00f37c3b4044df2ec3128");
+        const data = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${input}&appid=048c43a2f7e00f37c3b4044df2ec3128`);
         const res = await data.json();
         setFiveDaysData(res);
     }
@@ -21,7 +21,7 @@ const FiveDays = () => {
             <div>
 
                 <div style={{textAlign:'center'}}>
-                    <h1> City Name: {fiveDaysData.city.name}</h1>
+                    <h1> City : {fiveDaysData.city.name}</h1>
                     <h2> Country: {fiveDaysData.city.country}</h2>
                     <h2> Population {fiveDaysData.city.population}</h2>
                 </div>
@@ -42,7 +42,7 @@ const FiveDays = () => {
                             (i === 0 || i % 8 === 0 ) &&
                             <div key={i} style={{display:'flex', justifyContent:'space-around'}}>
                                 <p> {e.dt_txt} </p>
-                                <p> {e.main.temp} </p>
+                                <p> {(e.main.temp - 273.15).toFixed(2) } °C </p>
                                 <p> {e.main.humidity} </p>
                                 <p> {e.main.pressure} </p>
                                 <p> {e.wind.speed} </p>

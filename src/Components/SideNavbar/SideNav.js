@@ -1,21 +1,29 @@
 import React from 'react'
 import './SideNav.css';
 
-const SideNav = () => {
-    // let searhedData = JSON.parse(localStorage.getItem("cityWeather")) 
+const SideNav = ({data}) => {
+    console.log("data in side", data)
+    
+    let dateObj = JSON.stringify(new Date(data?.dt * 1000))
+    let date = dateObj.slice(1,11)
 
     return (
-        <div id='side-nav'>
-            <div id='side-top'>
-                <h3> Jan 16, 2022 </h3>
-            </div>
+        <>
+        {
+        data && 
+            <div id='side-nav'>
+                <div id='side-top'>
+                    <h2> { date } </h2>
+                </div>
 
-            <div id='side-bottom'>
-                <h1> 21° </h1>
-                <h2> London </h2>
-                <h1> ° ° ° ° </h1>
+                <div id='side-bottom'>
+                    <h1> {(data.main.temp - 273.15).toFixed(2) } °C </h1>
+                    <h2> { data.name } </h2>
+                    <h1> ° ° ° ° </h1>
+                </div>
             </div>
-        </div>
+        }
+        </>
     )
 }
 

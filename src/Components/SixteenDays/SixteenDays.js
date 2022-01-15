@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 
-const SixteenDays = () => {
+const SixteenDays = ({input}) => {
     const [sixteenDaysData, setsixteenDaysData] = useState();
-    // console.log("16 days",sixteenDaysData);
+    console.log("16 days",sixteenDaysData);
 
     const fetchSixteenDaysData = async() => {
-        const data = await fetch("https://api.openweathermap.org/data/2.5/forecast/daily?q=London&units=metric&cnt=16&appid=048c43a2f7e00f37c3b4044df2ec3128");
+        const data = await fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${input}&units=metric&cnt=16&appid=048c43a2f7e00f37c3b4044df2ec3128`);
         const res = await data.json();
         setsixteenDaysData(res);
     }
@@ -13,6 +13,7 @@ const SixteenDays = () => {
     useEffect(() => {
         fetchSixteenDaysData();
     }, [])
+
 
     return (
         <div>
@@ -36,7 +37,7 @@ const SixteenDays = () => {
                     {
                         sixteenDaysData.list.map( (e, i) => (
                             <div key={i} style={{display:'flex', justifyContent:'space-evenly', flexWrap:'wrap'}}>
-                                <p> {e.dt} </p>
+                                <p> { (JSON.stringify(new Date(e?.dt * 1000)).slice(1,11))   } </p>
                                 <p> {e.clouds} </p>
                                 <p> {e.humidity} </p>
                                 <p> {e.pressure} </p>
