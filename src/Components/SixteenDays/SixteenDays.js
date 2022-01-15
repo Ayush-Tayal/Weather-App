@@ -21,14 +21,13 @@ const SixteenDays = ({input}) => {
 
     return (
         <div>
-            {/* country, city name */}
-
             { sixteenDaysData &&
 
-                <div style={{textAlign:'center'}}>
-                    <h1> City Name: {sixteenDaysData.city.name}</h1>
-                    <h2> Country: {sixteenDaysData.city.country}</h2>
-                    <h2> Population {sixteenDaysData.city.population}</h2>
+                <div>
+                    <div id='top'>
+                        <h1> City Name: {sixteenDaysData.city.name}</h1>
+                        <h1> Country: {sixteenDaysData.city.country}</h1>
+                    </div>
                     <div style={{display:'flex', justifyContent:'space-evenly', flexWrap:'wrap'}}>
                         <h3> Date </h3>
                         <h3> Clouds </h3>

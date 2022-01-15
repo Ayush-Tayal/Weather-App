@@ -1,5 +1,14 @@
-#singleDayInfo div {
+#top {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin-bottom: 20px;
 }
+
+#singleDayInfo div {
+    display: flex;
+    justify-content: space-evenly;
+    width: 60%;
+    margin: auto;
+}
+

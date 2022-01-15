@@ -24,10 +24,9 @@ const FiveDays = ({input}) => {
             fiveDaysData &&
             <div>
 
-                <div style={{textAlign:'center'}}>
+                <div id='top'>
                     <h1> City : {fiveDaysData.city.name}</h1>
-                    <h2> Country: {fiveDaysData.city.country}</h2>
-                    <h2> Population {fiveDaysData.city.population}</h2>
+                    <h1> Country: {fiveDaysData.city.country}</h1>
                 </div>
                 
                 <div style={{display:'flex', justifyContent:'space-around'}}>

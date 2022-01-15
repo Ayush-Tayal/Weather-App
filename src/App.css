@@ -21,8 +21,11 @@
 #search {
   display: flex;
   justify-content: space-between;
-  width: 60%;
-  margin: 3vh auto;
+  width: 30%;
+  margin-top: 4vh;
+  margin-right:auto;
+  margin-bottom: auto;
+  margin-left: 45vw;
 }
 
 #route {
@@ -36,5 +39,20 @@
   justify-content: space-evenly;
   cursor: pointer;
   border-bottom: 1px solid grey;
-  margin: 5px;
+  margin: 10px 50px;
+  font-weight: 900;
+  font-size: 17px;
+}
+
+.route-div h1 {
+  padding: 8px;
+  border-radius: 5px;
+  color: white;
+}
+.not-active {
+  background-color: red;
+}
+
+.active {
+  background-color: rgb(30, 216, 55)
 }

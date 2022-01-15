@@ -4,7 +4,8 @@ import SingleDay from "./Components/SingleDay/SingleDay";
 import FiveDays from "./Components/FiveDays/FiveDays";
 import SixteenDays from "./Components/SixteenDays/SixteenDays";
 import SideNav from "./Components/SideNavbar/SideNav";
-import { Button, Input } from '@mui/material'
+import { Button } from '@mui/material'
+import TextField from '@mui/material/TextField';
 
 function App() {
   const [showToday, setShowToday] = useState(true);
@@ -58,29 +59,26 @@ function App() {
         <SideNav input={input} data={data} />
       </div>
 
-
-      {/* search */}
       <div id="search">
-        <Input
-          style={{ width: "80%" }}
-          id="standard-basic"
-          label="Standard"
-          variant="standard"
+        <TextField 
+          style={{ width: "90%", marginRight:'20px' }}
+          id="outlined-basic" 
+          label="Forecast" 
+          variant="outlined" 
           placeholder="Enter City"
           onChange={(e) => setInput(e.target.value)}
         />
 
-        <Button variant="outlined" color="secondary" onClick={handleSearch}>
+        <Button variant="outlined" color="primary" onClick={handleSearch}>
           Search
         </Button>
       </div>
 
-      {/* days component */}
       <div id="route">
         <div className="route-div">
-          <h1 onClick={handleToday}> Today </h1>
-          <h1 onClick={handleWeek}> Week </h1>
-          <h1 onClick={handleMonth}> Month </h1>
+          <h1 className={showToday ? "active" : 'not-active'} onClick={handleToday}> Today </h1>
+          <h1 className={showFiveDays ? "active" : 'not-active'} onClick={handleWeek}> Week </h1>
+          <h1 className={showSixteenDays ? "active" : 'not-active'} onClick={handleMonth}> Month </h1>
         </div>
 
         {showToday && !showFiveDays && !showSixteenDays && (

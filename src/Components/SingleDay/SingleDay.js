@@ -2,48 +2,50 @@ import React from 'react'
 import './SingleDay.css'
 
 const SingleDay = ({singleData}) => {
-
-    let dateObj = JSON.stringify(new Date(singleData?.dt * 1000))
-    let date = dateObj.slice(1,11)
-
+    // console.log("Data", singleData);
     return (
         <div>
             {
             singleData &&
             <div>
-                <div style={{textAlign:'center'}}>
+                <div id='top'>
                     <h1> City: {singleData.name}</h1>
-                    <h2> Country: {singleData.sys.country}</h2>
+                    <h1> Country: {singleData.sys.country}</h1>
                 </div>
                 
                 <div id='singleDayInfo'>
                     <div>
-                        <h3> Date </h3>
-                        <p> {date} </p>
+                        <h2> Min Temp </h2>
+                        <p> {(singleData.main.temp_min - 273.15).toFixed(2)} °C </p>
+                    </div>
+                    
+                    <div>
+                        <h2> Max Temp </h2>
+                        <p> {(singleData.main.temp_max - 273.15).toFixed(2)} °C </p>
                     </div>
 
                     <div>
-                        <h3> Temperature </h3>
-                        <p> {(singleData.main.temp - 273.15).toFixed(2)} °C </p>
-                    </div>
-
-                    <div>
-                        <h3> Humidity </h3>
+                        <h2> Humidity </h2>
                         <p> {singleData.main.humidity} </p>
                     </div>
 
                     <div>
-                        <h3> Pressure </h3>
+                        <h2> Pressure </h2>
                         <p> {singleData.main.pressure} </p>
                     </div>
 
                     <div>
-                        <h3> Wind Speed </h3>
+                        <h2> Wind Speed </h2>
                         <p> {singleData.wind.speed} </p>
                     </div>
 
                     <div>
-                        <h3> Description </h3>
+                        <h2> Visibility </h2>
+                        <p> {singleData.visibility} </p>
+                    </div>
+
+                    <div>
+                        <h2> Description </h2>
                         <p> {singleData.weather[0].description} </p>
                     </div>
                 </div>
