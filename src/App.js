@@ -12,6 +12,7 @@ function App() {
   const [showSixteenDays, setShowSixteenDays] = useState(false);
   const [input, setInput] = useState("london")
   const [data, setData] = useState()
+  // console.log("data", data);
 
   const handleToday = () => {
     setShowToday(true);
@@ -32,9 +33,13 @@ function App() {
   };
 
   const fetchData = async() => {
-    const data = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=048c43a2f7e00f37c3b4044df2ec3128`);
-    const res = await data.json();
-    setData(res);
+    try {
+      const data = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=048c43a2f7e00f37c3b4044df2ec3128`);
+      const res = await data.json();
+      setData(res);
+    }catch(err) {
+      alert("Data Not Found");
+    }
   }
   
   useEffect(() => {
@@ -43,9 +48,10 @@ function App() {
 
   const handleSearch = () => {
     fetchData();
-    console.log(data);
+    // console.log(data);
   }
 
+  
   return (
     <div id="main">
       <div id="side">

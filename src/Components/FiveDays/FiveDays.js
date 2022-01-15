@@ -5,9 +5,13 @@ const FiveDays = ({input}) => {
     // console.log(fiveDaysData);
     
     const fetchFiveDaysData = async() => {
-        const data = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${input}&appid=048c43a2f7e00f37c3b4044df2ec3128`);
-        const res = await data.json();
-        setFiveDaysData(res);
+        try{
+            const data = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${input}&appid=048c43a2f7e00f37c3b4044df2ec3128`);
+            const res = await data.json();
+            setFiveDaysData(res);
+        }catch(err) {
+            alert("Data Not Found")
+        }
     }
     
     useEffect(() => {

@@ -5,9 +5,13 @@ const SixteenDays = ({input}) => {
     // console.log("16 days",sixteenDaysData);
 
     const fetchSixteenDaysData = async() => {
-        const data = await fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${input}&units=metric&cnt=16&appid=048c43a2f7e00f37c3b4044df2ec3128`);
-        const res = await data.json();
-        setsixteenDaysData(res);
+        try{
+            const data = await fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${input}&units=metric&cnt=16&appid=048c43a2f7e00f37c3b4044df2ec3128`);
+            const res = await data.json();
+            setsixteenDaysData(res);
+        } catch(err){
+            alert("Data Not Found")
+        }
     }
     
     useEffect(() => {

@@ -17,6 +17,7 @@ const SideNav = ({data}) => {
                 </div>
 
                 <div id='side-bottom'>
+                    <img src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`} alt="icon" />
                     <h1> {(data.main.temp - 273.15).toFixed(2) } °C </h1>
                     <h2> { data.name } </h2>
                     <h1> ° ° ° ° </h1>
