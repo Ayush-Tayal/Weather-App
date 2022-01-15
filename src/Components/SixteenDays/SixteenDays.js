@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 const SixteenDays = ({input}) => {
     const [sixteenDaysData, setsixteenDaysData] = useState();
-    console.log("16 days",sixteenDaysData);
+    // console.log("16 days",sixteenDaysData);
 
     const fetchSixteenDaysData = async() => {
         const data = await fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${input}&units=metric&cnt=16&appid=048c43a2f7e00f37c3b4044df2ec3128`);

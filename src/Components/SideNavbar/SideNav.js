@@ -2,7 +2,7 @@ import React from 'react'
 import './SideNav.css';
 
 const SideNav = ({data}) => {
-    console.log("data in side", data)
+    // console.log("data in side", data);
     
     let dateObj = JSON.stringify(new Date(data?.dt * 1000))
     let date = dateObj.slice(1,11)
