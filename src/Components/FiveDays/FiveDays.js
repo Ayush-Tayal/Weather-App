@@ -10,7 +10,7 @@ const FiveDays = ({input}) => {
             const res = await data.json();
             setFiveDaysData(res);
         }catch(err) {
-            alert("Data Not Found")
+            alert("City Not Found")
         }
     }
     

@@ -37,9 +37,16 @@ function App() {
     try {
       const data = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=048c43a2f7e00f37c3b4044df2ec3128`);
       const res = await data.json();
-      setData(res);
+      // console.log("res",res.cod);
+      
+      if(res.cod === '404'){
+        alert("City Not Found");
+      } else{
+        setData(res);
+      }
+
     }catch(err) {
-      alert("Data Not Found");
+      alert("City Not Found");
     }
   }
   

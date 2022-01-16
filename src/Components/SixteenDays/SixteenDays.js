@@ -28,6 +28,7 @@ const SixteenDays = ({input}) => {
                         <h1> City Name: {sixteenDaysData.city.name}</h1>
                         <h1> Country: {sixteenDaysData.city.country}</h1>
                     </div>
+
                     <div style={{display:'flex', justifyContent:'space-evenly', flexWrap:'wrap'}}>
                         <h3> Date </h3>
                         <h3> Clouds </h3>
