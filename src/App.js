@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import SingleDay from "./Components/SingleDay/SingleDay";
-import FiveDays from "./Components/FiveDays/FiveDays";
+import WeeklyWeather from "./Components/WeeklyWeather/WeeklyWeather";
 import SixteenDays from "./Components/SixteenDays/SixteenDays";
 import SideNav from "./Components/SideNavbar/SideNav";
 import { Button } from '@mui/material'
@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField';
 
 function App() {
   const [showToday, setShowToday] = useState(true);
-  const [showFiveDays, setShowFiveDays] = useState(false);
+  const [showWeeklyWeather, setShowWeeklyWeather] = useState(false);
   const [showSixteenDays, setShowSixteenDays] = useState(false);
   const [input, setInput] = useState("delhi")
   const [data, setData] = useState()
@@ -17,19 +17,19 @@ function App() {
 
   const handleToday = () => {
     setShowToday(true);
-    setShowFiveDays(false);
+    setShowWeeklyWeather(false);
     setShowSixteenDays(false);
   };
 
   const handleWeek = () => {
     setShowToday(false);
-    setShowFiveDays(true);
+    setShowWeeklyWeather(true);
     setShowSixteenDays(false);
   };
 
   const handleMonth = () => {
     setShowToday(false);
-    setShowFiveDays(false);
+    setShowWeeklyWeather(false);
     setShowSixteenDays(true);
   };
 
@@ -84,23 +84,23 @@ function App() {
       <div id="route">
         <div className="route-div">
           <h1 className={showToday ? "active" : 'not-active'} onClick={handleToday}> Today </h1>
-          <h1 className={showFiveDays ? "active" : 'not-active'} onClick={handleWeek}> Week </h1>
+          <h1 className={showWeeklyWeather ? "active" : 'not-active'} onClick={handleWeek}> Week </h1>
           <h1 className={showSixteenDays ? "active" : 'not-active'} onClick={handleMonth}> Month </h1>
         </div>
 
-        {showToday && !showFiveDays && !showSixteenDays && (
+        {showToday && !showWeeklyWeather && !showSixteenDays && (
           <div>
             <SingleDay singleData={data}/>
           </div>
         )}
 
-        {!showToday && showFiveDays && !showSixteenDays && (
+        {!showToday && showWeeklyWeather && !showSixteenDays && (
           <div>
-            <FiveDays input={input}/>
+            <WeeklyWeather input={input}/>
           </div>
         )}
 
-        {!showToday && !showFiveDays && showSixteenDays && (
+        {!showToday && !showWeeklyWeather && showSixteenDays && (
           <div>
             <SixteenDays input={input} />
           </div>

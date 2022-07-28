@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import { styled } from "@mui/material/styles";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
@@ -27,46 +27,40 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const SixteenDays = ({ input }) => {
-  const [sixteenDaysData, setsixteenDaysData] = useState();
+const WeeklyWeather = ({ input }) => {
+  const [weeklyData, setWeeklyData] = useState();
 
-  const fetchSixteenDaysData = async () => {
+  const fetchweeklyData = async () => {
     try {
       const data = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast/daily?q=${input}&units=metric&cnt=16&appid=048c43a2f7e00f37c3b4044df2ec3128`
+        `https://api.openweathermap.org/data/2.5/forecast?q=${input}&appid=048c43a2f7e00f37c3b4044df2ec3128`
       );
       const res = await data.json();
-      setsixteenDaysData(res);
+      setWeeklyData(res);
     } catch (err) {
-      alert("Data Not Found");
+      alert("City Not Found");
     }
   };
 
   useEffect(() => {
-    fetchSixteenDaysData();
+    fetchweeklyData();
   }, []);
 
   return (
-    <>
-      {sixteenDaysData && sixteenDaysData != undefined && (
+    <div>
+      {weeklyData && (
         <div>
-          <div>
-            {sixteenDaysData && (
-              <div>
-                <div id="top">
-                  <h1> City : {sixteenDaysData.city.name}</h1>
-                  <h1> Country : {sixteenDaysData.city.country}</h1>
-                </div>
-              </div>
-            )}
+          <div id="top">
+            <h1> City : {weeklyData.city.name}</h1>
+            <h1> Country : {weeklyData.city.country}</h1>
           </div>
 
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
               <TableHead>
                 <TableRow>
-                  <StyledTableCell> Date </StyledTableCell>
-                  <StyledTableCell align="right"> Clouds </StyledTableCell>
+                  <StyledTableCell> Date & Time </StyledTableCell>
+                  <StyledTableCell align="right"> Temperature </StyledTableCell>
                   <StyledTableCell align="right">
                     Humidity&nbsp;
                   </StyledTableCell>
@@ -81,21 +75,21 @@ const SixteenDays = ({ input }) => {
               </TableHead>
 
               <TableBody>
-                {sixteenDaysData.list.map((row, i) => (
+                {weeklyData.list.map((row, i) => (i===0 || i % 6 ===0) && (
                   <StyledTableRow key={i}>
                     <StyledTableCell component="th" scope="row">
-                      {JSON.stringify(new Date(row?.dt * 1000)).slice(1, 11)}
+                      {row.dt_txt}
                     </StyledTableCell>
                     <StyledTableCell align="right">
-                      {row.clouds}
+                    {(row.main.temp - 273.15).toFixed(2)} °C
                     </StyledTableCell>
                     <StyledTableCell align="right">
-                      {row.humidity}%
+                      {row.main.humidity}%
                     </StyledTableCell>
                     <StyledTableCell align="right">
-                      {row.pressure} mb
+                      {row.main.pressure} mb
                     </StyledTableCell>
-                    <StyledTableCell align="right">{row.speed} mph</StyledTableCell>
+                    <StyledTableCell align="right">{row.wind.speed} mph</StyledTableCell>
                     <StyledTableCell align="right">
                       {row.weather[0].description}
                     </StyledTableCell>
@@ -106,8 +100,8 @@ const SixteenDays = ({ input }) => {
           </TableContainer>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
-export default SixteenDays;
+export default WeeklyWeather;
