@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "../../App.css";
+import "./Home.css";
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import SingleDay from "../SingleDay/SingleDay";
 import WeeklyWeather from "../WeeklyWeather/WeeklyWeather";
 import SideNav from "../SideNavbar/SideNav";
 import SixteenDays from "../SixteenDays/SixteenDays";
-import Box from '@mui/material/Box';
-import LinearProgress from '@mui/material/LinearProgress';
 
 const Home = () => {
   const [showToday, setShowToday] = useState(true);
@@ -66,62 +64,69 @@ const Home = () => {
       <div id="side">
         <SideNav data={data} />
       </div>
-     
-      <div id="search">
-        <TextField
-          style={{ width: "90%", marginRight: "20px" }}
-          id="outlined-basic"
-          label="City Name"
-          variant="outlined"
-          autoComplete="false"
-          placeholder="Enter City Name"
-          onChange={(e) => setInput(e.target.value)}
-        />
 
-        <Button variant="outlined" color="primary" onClick={handleSearch}>
-          Search
-        </Button>
-      </div>
+      <div className="main-container">
+        <div id="search">
+          <TextField
+            className="text_field"
+            id="outlined-basic"
+            label="City Name"
+            variant="outlined"
+            autoComplete="false"
+            placeholder="Enter City Name"
+            onChange={(e) => setInput(e.target.value)}
+          />
 
-      <div id="route">
-        <div className="route-div">
-          <h1
-            className={showToday ? "active" : "not-active"}
-            onClick={handleToday}
-          >
-            Today
-          </h1>
-          <h1
-            className={showWeeklyWeather ? "active" : "not-active"}
-            onClick={handleWeek}
-          >
-            Week
-          </h1>
-          <h1
-            className={showSixteenDays ? "active" : "not-active"}
-            onClick={handleMonth}
-          >
-            Month
-          </h1>
+          <Button variant="contained" color="primary" onClick={handleSearch}>
+            Search
+          </Button>
         </div>
 
-        {showToday && !showWeeklyWeather && !showSixteenDays && (
-          <div>
-            <SingleDay singleData={data} />
-          </div>
-        )}
+        <div id="route">
+          <div className="route-div">
+            <Button
+              variant={showToday ? "contained" : "outlined"}
+              color={showToday ? "success" : "primary"}
+              onClick={handleToday}
+            >
+              Today
+            </Button>
 
-        {!showToday && showWeeklyWeather && !showSixteenDays && (
-          <div>
-            <WeeklyWeather input={input} />
-          </div>
-        )}
+            <Button
+              variant={showWeeklyWeather ? "contained" : "outlined"}
+              color={showWeeklyWeather ? "success" : "primary"}
+              onClick={handleWeek}
+            >
+              Week
+            </Button>
 
-        {!showToday && !showWeeklyWeather && showSixteenDays && (
-          <div>
-            <SixteenDays input={input} />
+            <Button
+              variant={showSixteenDays ? "contained" : "outlined"}
+              color={showSixteenDays ? "success" : "primary"}
+              onClick={handleMonth}
+            >
+              Month
+            </Button>
           </div>
-        )}
+
+          {showToday && !showWeeklyWeather && !showSixteenDays && (
+            <div>
+              <SingleDay singleData={data} />
+            </div>
+          )}
+
+          {!showToday && showWeeklyWeather && !showSixteenDays && (
+            <div>
+              <WeeklyWeather input={input} />
+            </div>
+          )}
+
+          {!showToday && !showWeeklyWeather && showSixteenDays && (
+            <div>
+              <SixteenDays input={input} />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

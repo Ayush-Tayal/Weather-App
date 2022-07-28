@@ -61,8 +61,8 @@ const SixteenDays = ({ input }) => {
             )}
           </div>
 
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableContainer component={Paper} sx={{maxHeight:460}}>
+            <Table sx={{ minWidth: 700}} stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
                   <StyledTableCell> Date </StyledTableCell>

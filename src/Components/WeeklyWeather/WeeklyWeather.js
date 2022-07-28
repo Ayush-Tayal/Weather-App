@@ -55,8 +55,8 @@ const WeeklyWeather = ({ input }) => {
             <h1> Country : {weeklyData.city.country}</h1>
           </div>
 
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableContainer component={Paper} sx={{maxHeight:460}}>
+            <Table sx={{ minWidth: 700 }} stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
                   <StyledTableCell> Date & Time </StyledTableCell>
