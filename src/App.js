@@ -11,7 +11,7 @@ function App() {
   const [showToday, setShowToday] = useState(true);
   const [showFiveDays, setShowFiveDays] = useState(false);
   const [showSixteenDays, setShowSixteenDays] = useState(false);
-  const [input, setInput] = useState("london")
+  const [input, setInput] = useState("delhi")
   const [data, setData] = useState()
   // console.log("data", data);
 
