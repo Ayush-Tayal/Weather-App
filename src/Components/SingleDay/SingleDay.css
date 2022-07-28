@@ -5,9 +5,15 @@
 }
 
 #singleDayInfo div {
-    display: flex;
-    justify-content: space-evenly;
-    width: 60%;
+    display: flex; 
+    justify-content: space-between;
+    width: 40%;
     margin: auto;
+}
+
+#singleDayInfo div p{
+    display: flex;
+    margin: 0;
+    align-items: center;
 }
 
